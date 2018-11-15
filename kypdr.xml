@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<board type="Arduino Uno" name="kypdr">
+    <info>
+        Declares required ADL files for the kypdr board
+    </info>
+    
+    <devices>
+        <device name="Binary Output" type="Binary Output">
+            <setting id="pins" value="5,4,3"/>
+        </device>
+    </devices>
+
+    <modules>
+        <module>Task</module>
+        <module>Debouncer</module>
+    </modules>
+
+    <custom_code>
+        <file>kypdr.cpp</file>
+    </custom_code>
+    
+    <adl protocol="simple"></adl>
+</board>
