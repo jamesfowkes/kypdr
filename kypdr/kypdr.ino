@@ -16,7 +16,7 @@
 
 /*
 kypdr
-Created on 2018-11-15
+Created on 2018-12-13
 By the Arduino Description Language tool.
  
 
@@ -41,6 +41,8 @@ By the Arduino Description Language tool.
 
 
 
+#include "boolean-param.h"
+
 
 
 static BinaryOutput s_binary_output = BinaryOutput(5, 4, 3, PIN_NOT_USED, PIN_NOT_USED, PIN_NOT_USED, PIN_NOT_USED, PIN_NOT_USED);
@@ -55,9 +57,14 @@ static DeviceBase * s_devices[] =
 };
 
 
+static BooleanParam s_single_keypress = BooleanParam(false, true);
+
 
 static ParameterBase * s_params[] = 
 {
+    
+    &s_single_keypress
+    
     
 };
 
@@ -89,8 +96,15 @@ DeviceBase& adl_get_device(DEVICE_ADDRESS address)
 }
 
 
+int handle_param1_command(char const * const command, char * reply)
+{
+    return s_single_keypress.command_handler(command, reply);
+}
+
 
 static COMMAND_HANDLER adl_params[] = {
+    
+    handle_param1_command,
     
 };
 
@@ -129,6 +143,10 @@ void setup()
     
 
     
+    // Setup for Single Keypress
+    s_single_keypress.setup();
+    // END Single Keypress setup
+    
 
     adl_custom_setup(s_devices, ADL_DEVICE_COUNT, s_params, ADL_PARAM_COUNT);
 
@@ -151,7 +169,7 @@ void loop()
 
 
 
-        void serialEvent()
+        void serialEventRun()
         {
             while (Serial.available())
             {

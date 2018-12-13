@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<board type="Arduino Uno" name="kypdr">
+<board type="AStar32U4" name="kypdr">
     <info>
         Declares required ADL files for the kypdr board
     </info>
@@ -11,6 +11,12 @@
         </device>
     </devices>
 
+    <parameters>
+        <parameter name="Single Keypress" type="Boolean">
+            <setting id="use_eeprom" value="true"/>
+        </parameter>
+    </parameters>
+
     <modules>
         <module>Task</module>
         <module>Debouncer</module>
@@ -20,5 +26,5 @@
         <file>kypdr.cpp</file>
     </custom_code>
     
-    <adl protocol="simple"></adl>
+    <adl protocol="url"></adl>
 </board>
